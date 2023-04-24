@@ -1,0 +1,52 @@
+# Copyright (c) 2023 Jacob Allen Morris
+# 
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+[tasks.default]
+windows_alias = "windows_build"
+linux_alias = "linux_build"
+
+# Build Tasks:
+[tasks.linux_build]
+run_task = [
+	{ name = "linux-x86_64-pc-windows-gnu", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-pc-windows-gnu" } } },
+	{ name = "linux-i686-pc-windows-gnu", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-pc-windows-gnu" } } },
+	{ name = "linux-x86_64-pc-windows-gnu" }
+]
+
+[tasks.windows_build]
+run_task = [
+	{ name = "windows-x86_64-pc-windows-msvc", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "x86_64-pc-windows-msvc" } } },
+	{ name = "windows-i686-pc-windows-msvc", condition = { env = { "CARGO_MAKE_RUST_TARGET_TRIPLE" = "i686-pc-windows-msvc" } } }
+]
+
+# Linux Target Tasks:
+[tasks.linux-i686-pc-windows-gnu]
+script = "bash -c scripts/build-i686-pc-windows-gnu.sh"
+dependencies = [ "linux-build-i686-pc-windows-gnu" ]
+[tasks.linux-build-i686-pc-windows-gnu]
+command = "cargo"
+args = [ "build", "--release", "--target", "i686-pc-windows-gnu" ]
+
+[tasks.linux-x86_64-pc-windows-gnu]
+script = "bash -c scripts/build-x86_64-pc-windows-gnu.sh"
+dependencies = [ "linux-build-x86_64-pc-windows-gnu" ]
+[tasks.linux-build-x86_64-pc-windows-gnu]
+command = "cargo"
+args = [ "build", "--release", "--target", "x86_64-pc-windows-gnu" ]
+
+# Windows Target Tasks:
+[tasks.windows-i686-pc-windows-msvc]
+script = "powershell -ExecutionPolicy Bypass -File scripts/build-i686-pc-windows-msvc.ps1"
+dependencies = [ "windows-build-i686-pc-windows-msvc" ]
+[tasks.windows-build-i686-pc-windows-msvc]
+command = "cargo"
+args = [ "build", "--release", "--target", "i686-pc-windows-msvc" ]
+
+[tasks.windows-x86_64-pc-windows-msvc]
+script = "powershell -ExecutionPolicy Bypass -File scripts/build-x86_64-pc-windows-msvc.ps1"
+dependencies = [ "windows-build-x86_64-pc-windows-msvc" ]
+[tasks.windows-build-x86_64-pc-windows-msvc]
+command = "cargo"
+args = [ "build", "--release", "--target", "x86_64-pc-windows-msvc" ]

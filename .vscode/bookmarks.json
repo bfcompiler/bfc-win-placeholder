@@ -1,0 +1,39 @@
+{
+	"files": [
+		{
+			"path": "Makefile.toml",
+			"bookmarks": [
+				{
+					"line": 10,
+					"column": 15,
+					"label": "Linux Builder"
+				},
+				{
+					"line": 17,
+					"column": 9,
+					"label": "Windows Builder"
+				},
+				{
+					"line": 24,
+					"column": 25,
+					"label": "Linux; GNU; 32bit"
+				},
+				{
+					"line": 31,
+					"column": 35,
+					"label": "Linux; GNU; 64bit"
+				},
+				{
+					"line": 39,
+					"column": 12,
+					"label": "Windows; MSVC; 32bit"
+				},
+				{
+					"line": 46,
+					"column": 12,
+					"label": "Windows; MSVC; 64bit"
+				}
+			]
+		}
+	]
+}
