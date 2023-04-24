@@ -1,7 +1,7 @@
 name: Build 64bit using MSVC Windows
 on: [workflow_dispatch]
 jobs:
-    build_64bit_msvc:
+    build_64bit_MSVC:
       runs-on: windows-latest
       steps:
         - name: Checkout repo
