@@ -35,7 +35,7 @@ jobs:
           - name: Set permissions for script
             run: sudo chmod +x scripts/build-i686-pc-windows-gnu.sh
           - name: Build with cargo-make
-            run: cargo make
+            run: cargo make -e CARGO_MAKE_RUST_TARGET_TRIPLE=i686-pc-windows-gnu
           - name: Upload artifact
             uses: actions/upload-artifact@v2
             with:
