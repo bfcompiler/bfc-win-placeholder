@@ -12,6 +12,8 @@ jobs:
               run: rustup target add x86_64-pc-windows-gnu
             - name: Install cargo make
               run: cargo install cargo-make
+            - name: Set permissions for script
+              run: sudo chmod +x scripts/build-x86_64-pc-windows-gnu.sh
             - name: Build with cargo-make
               run: cargo make
             - name: Upload artifact
