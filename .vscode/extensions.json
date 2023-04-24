@@ -3,6 +3,9 @@
 		"ymotongpoo.licenser",
 		"1yib.rust-bundle",
 		"tamasfe.even-better-toml",
-		"alefragnani.bookmarks"
+		"alefragnani.bookmarks",
+		"redhat.vscode-yaml",
+		"github.vscode-github-actions",
+		"me-dutour-mathieu.vscode-github-actions"
 	]
 }
