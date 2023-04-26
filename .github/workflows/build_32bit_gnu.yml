@@ -2,7 +2,7 @@ name: Build 32bit using GNU Linux
 on: [workflow_dispatch]
 jobs:
     build_32bit_GNU:
-      runs-on: self-hosted
+      runs-on: [self-hosted, linux]
       steps:
         - name: Checkout repo
           uses: actions/checkout@v3
