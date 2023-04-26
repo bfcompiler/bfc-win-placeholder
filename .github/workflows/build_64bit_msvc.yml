@@ -2,7 +2,7 @@ name: Build 64bit using MSVC Windows
 on: [workflow_dispatch]
 jobs:
     build_64bit_MSVC:
-      runs-on: [self-hosted,windows]
+      runs-on: [self-hosted, windows, x64]
       steps:
         - name: Checkout repo
           uses: actions/checkout@v3
