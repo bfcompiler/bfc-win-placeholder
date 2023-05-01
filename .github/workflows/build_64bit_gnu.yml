@@ -6,6 +6,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Set up GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: latest
+          platform: x64
       - name: Set up MinGW
         uses: egor-tensin/setup-mingw@v2
         with:
@@ -16,7 +21,8 @@ jobs:
           toolchain: nightly
           target: x86_64-pc-windows-gnu
           override: true
-      - uses: actions-rs/install@v0.1
+      - name: Install cargo-make
+        uses: actions-rs/install@v0.1
         with:
           crate: cargo-make
           version: latest
