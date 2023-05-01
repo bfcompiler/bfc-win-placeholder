@@ -6,6 +6,16 @@ jobs:
       steps:
         - name: Checkout repo
           uses: actions/checkout@v3
+        - name: Cache 64bit linux cargo
+          uses: actions/cache@v3
+          with:
+            path: |
+              ~/.cargo/bin/
+              ~/.cargo/registry/index/
+              ~/.cargo/registry/cache/
+              ~/.cargo/git/db/
+              target/
+            key: ${{ runner.os }}-cargo-32bit-${{ hashFiles('**/Cargo.lock') }}
         - name: Install rust target i686-pc-windows-msvc
           run: rustup target add i686-pc-windows-msvc
         - name: Install cargo make
