@@ -19,7 +19,7 @@ jobs:
       - name: Install rust target x86_64-pc-windows-msvc
         run: rustup target add x86_64-pc-windows-msvc
       - name: Install cargo make
-        run: cargo install cargo-make
+        run: if (!(Test-Path -Path "~/.cargo/bin/cargo-make.exe")) { cargo install cargo-make }
       - name: Build with cargo-make
         run: cargo make -e CARGO_MAKE_RUST_TARGET_TRIPLE=x86_64-pc-windows-msvc
       - name: Upload artifact
