@@ -8,15 +8,21 @@ jobs:
         uses: actions/checkout@v3
       - name: Install gcc-mingw-w64
         run: sudo apt-get install gcc-mingw-w64 -y
-      - uses: actions/cache@v3
+      - name: Cache rust tooling
+        uses: actions/cache@v3
         with:
           path: |
             ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
+          key: ${{ runner.os }}-cargo-tooling
+      - name: Cache rust target
+        uses: actions/cache@v3
+        with:
+          path: |
             target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-64bit-${{ hashFiles('**/Cargo.toml') }}
       - name: Install rust target x86_64-pc-windows-gnu
         run: rustup target add x86_64-pc-windows-gnu
       - name: Install cargo make
