@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Install gcc-mingw-w64
         run: sudo apt-get install gcc-mingw-w64 -y
-      - name: Cache 64bit windows cargo
+      - name: Cache 64bit linux cargo
         uses: actions/cache@v3
         with:
           path: |
@@ -21,7 +21,7 @@ jobs:
       - name: Install rust target x86_64-pc-windows-gnu
         run: rustup target add x86_64-pc-windows-gnu
       - name: Install cargo make
-        run: cargo install cargo-make
+        run: if [ ! -f "~/.cargo/bin/cargo-make" ]; then cargo install cargo-make; fi
       - name: Set permissions for script
         run: sudo chmod +x scripts/build-x86_64-pc-windows-gnu.sh
       - name: Build with cargo-make
