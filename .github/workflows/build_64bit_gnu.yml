@@ -21,7 +21,7 @@ jobs:
       - name: Install rust target x86_64-pc-windows-gnu
         run: rustup target add x86_64-pc-windows-gnu
       - name: Install cargo make
-        run: if [[ -f "~/.cargo/bin/cargo-make" && -f "~/cargo/bin/makers" ]]; then cargo install cargo-make; fi
+        run: if [[ ! -e ~/.cargo/bin/cargo-make ]]; then cargo install cargo-make; fi
       - name: Set permissions for script
         run: sudo chmod +x scripts/build-x86_64-pc-windows-gnu.sh
       - name: Build with cargo-make
